@@ -29,7 +29,19 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
+        <DesktopOnly>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </DesktopOnly>
         <Logo />
+        <LaptopPlusWrapper>
+          <Button>Subscribe</Button>
+          <Login>Already a subscriber?</Login>
+        </LaptopPlusWrapper>
       </MainHeader>
     </header>
   );
@@ -39,6 +51,10 @@ const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.laptopAndUp}{
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -65,6 +81,49 @@ const MainHeader = styled(MaxWidthWrapper)`
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 48px;
+    margin-bottom: 72px;
+  }
+
+  @media ${QUERIES.laptopAndUp}{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-content: revert;
+  }
 `;
+
+const LaptopPlusWrapper = styled.div`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp}{
+    position: relative;
+    display: block;
+    justify-self: end;
+  }
+`;
+
+const DesktopOnly = styled(ActionGroup)`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp}{
+    display: flex;
+  }
+`
+
+const Login = styled.a`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+  font-weight:  var(--font-weight-normal);
+  font-size: ${14 / 16}rem;
+  text-decoration: underline;
+  color: var(--color-gray-900);
+`
 
 export default Header;

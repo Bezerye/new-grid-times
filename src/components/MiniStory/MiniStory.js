@@ -20,6 +20,7 @@ const Wrapper = styled.article`
 
 const Image = styled.img`
   width: 100%;
+  height: 132px;
   aspect-ratio: 220 / 132;
   object-fit: cover;
   border-radius: 4px;
